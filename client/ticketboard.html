@@ -1,0 +1,44 @@
+<head>
+  <title>Ticketboard</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{> hello}}
+
+  {{> tickets}}
+</body>
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
+
+<template name="tickets">
+  <h3>Tickets</h3>
+  {{#if loading}}
+    <div id="tickets">Loading...</div>
+  {{else}}
+    <div id="tickets">
+      {{#each tickets}}
+        <div class="ticket {{selected}}">
+	  {{#if editing}}
+	    <div class="edit">
+	      <input class="ticket-title-input" id="ticket-title-input" type="text" value="{{title}}" />
+	    </div>
+	  {{else}}
+	    <div class="display">
+	      <a class="ticket-title" href="/{{_id}}">
+		{{title}}
+	      </a>
+	    </div>
+	  {{/if}}
+	</div>
+      {{/each}}
+    </div>
+    <div id="createTicket">
+      <input type="text" id="new-ticket" placeholder="New Ticket" />
+    </div>
+  {{/if}}
+</template>
