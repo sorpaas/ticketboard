@@ -60,6 +60,9 @@ Template.tickets.events({
 	Session.set('editing_tickettitle', this._id);
 	Deps.flush();
 	activateInput(tmpl.find("#ticket-title-input"));
+    },
+    'click .ticket-delete': function (evt, tmpl) {
+	Tickets.remove(this._id);
     }
 });
 
