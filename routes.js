@@ -1,5 +1,5 @@
 Router.route('', function() {
-    this.render('Tickets');
+    this.render('ticketIndex');
 });
 
 Router.route('/hello');
