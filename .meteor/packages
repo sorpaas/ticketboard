@@ -6,3 +6,5 @@
 meteor-platform
 autopublish
 insecure
+iron:router@1.0.0-pre4
+
