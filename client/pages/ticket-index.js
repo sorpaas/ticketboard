@@ -34,9 +34,6 @@ Template.ticketIndex.tickets = function () {
 }
 
 Template.ticketIndex.events({
-    'mousedown .ticket': function (evt) {
-	Router.setTicket(this._id);
-    },
     'dblclick .ticket': function (evt, tmpl) {
 	Session.set('editing_tickettitle', this._id);
 	Deps.flush();

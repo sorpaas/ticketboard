@@ -1,29 +1,50 @@
 <template name="ticketIndex">
   {{> header }}
 
-  <h3>Tickets</h3>
-  <div id="tickets">
-    {{#each tickets}}
-    <div class="ticket {{selected}}">
-      {{#if editing}}
-      <div class="edit">
-	<input class="ticket-title-input" id="ticket-title-input" type="text" value="{{title}}" />
-      </div>
-      {{else}}
-      <div class="display">
-	<a class="ticket-delete">
-	  x
-	</a>
-	<a class="ticket-title" href="/{{_id}}">
-	  {{title}}
-	</a>
-      </div>
-      {{/if}}
+  <div class="container">
+    <div class="list-header">
+      <h3>Tickets</h3>
     </div>
-    {{/each}}
-  </div>
-  <div id="createTicket">
-    <input type="text" id="new-ticket" placeholder="New Ticket" />
+    <ul class="list-body">
+      {{#each tickets}}
+      <li class="list-item">
+        <div class="ticket-title">
+          <a class="ticket-title-link" href="/tickets/{{_id}}">
+            {{title}}
+          </a>
+          <div class="ticket-meta">
+            {{_id}}
+        </div>
+        </div>
+      </li>
+      {{/each}}
+      <li class="list-item">
+        <input class="ticket-new" type="text" placeholder="New Ticket" />
+      </li>
+    </ul>
+    <!-- <div id="tickets"> -->
+    <!--   {{#each tickets}} -->
+    <!--   <div class="ticket {{selected}}"> -->
+    <!--     {{#if editing}} -->
+    <!--     <div class="edit"> -->
+    <!--       <input class="ticket-title-input" id="ticket-title-input" type="text" value="{{title}}" /> -->
+    <!--     </div> -->
+    <!--     {{else}} -->
+    <!--     <div class="display"> -->
+    <!--       <a class="ticket-delete"> -->
+    <!--         x -->
+    <!--       </a> -->
+    <!--       <a class="ticket-title" href="/tickets/{{_id}}"> -->
+    <!--         {{title}} -->
+    <!--       </a> -->
+    <!--     </div> -->
+    <!--     {{/if}} -->
+    <!--   </div> -->
+    <!--   {{/each}} -->
+    <!-- </div> -->
+    <!-- <div id="createTicket"> -->
+    <!--   <input type="text" id="new-ticket" placeholder="New Ticket" /> -->
+    <!-- </div> -->
   </div>
 
   {{> footer }}
