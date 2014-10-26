@@ -1,3 +1,25 @@
 <template name="ticketShow">
-<p>{{ ticket.title }}</p>
+  {{> header}}
+
+  <div class="container">
+    <div class="list-header">
+      <h3>{{ ticket.title }}</h3>
+    </div>
+    <ul class="list-body">
+      {{#each ticket.comments}}
+      <li class="list-item">
+        <div class="item-title">
+          <a class="item-title-link">
+            {{message}}
+          </a>
+        </div>
+      </li>
+      {{/each}}
+      <li class="list-item">
+        <input id="comment-new" class="item-new" type="text" placeholder="New Comment" />
+      </li>
+    </ul>
+  </div>
+
+  {{> footer}}
 </template>

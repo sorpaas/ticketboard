@@ -8,18 +8,18 @@
     <ul class="list-body">
       {{#each tickets}}
       <li class="list-item">
-        <div class="ticket-title">
-          <a class="ticket-title-link" href="/tickets/{{_id}}">
+        <div class="item-title">
+          <a class="item-title-link" href="/tickets/{{_id}}">
             {{title}}
           </a>
-          <div class="ticket-meta">
+          <div class="item-meta">
             {{_id}}
         </div>
         </div>
       </li>
       {{/each}}
       <li class="list-item">
-        <input class="ticket-new" type="text" placeholder="New Ticket" />
+        <input id="ticket-new" class="item-new" type="text" placeholder="New Ticket" />
       </li>
     </ul>
     <!-- <div id="tickets"> -->

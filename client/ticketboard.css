@@ -80,7 +80,7 @@ body {
     display: table-row;
 }
 
-.list-item .ticket-title {
+.list-item .item-title {
     padding-top: 12px;
     padding: 8px 10px;
     border-top: 1px solid #EEE;
@@ -88,7 +88,7 @@ body {
     border-right: 1px solid #EEE;
 }
 
-.list-item .ticket-title-link {
+.list-item .item-title-link {
     display: inline-block;
     margin-bottom: 2px;
     padding-right: 3px;
@@ -99,7 +99,7 @@ body {
     text-decoration: none;
 }
 
-.list-item .ticket-meta {
+.list-item .item-meta {
     margin-top: 1px;
     margin-bottom: 2px;
     font-weight: normal;
@@ -107,7 +107,7 @@ body {
     font-size: 12px;
 }
 
-.list-item .ticket-new {
+.list-item .item-new {
     width: 678px;
     border: none;
     padding-top: 12px;
