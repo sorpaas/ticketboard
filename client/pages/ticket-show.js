@@ -48,5 +48,8 @@ Template.ticketShow.events({
       $set: {closed: true}
     });
     Router.go('/');
+  },
+  'click #ticket-back': function() {
+    Router.go('/');
   }
 });
