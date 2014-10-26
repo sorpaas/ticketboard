@@ -41,3 +41,12 @@ Template.ticketShow.events(okCancelEvents(
       evt.target.value = "";
     }
   }));
+
+Template.ticketShow.events({
+  'click #ticket-close': function() {
+    Tickets.update(this.ticket._id, {
+      $set: {closed: true}
+    });
+    Router.go('/');
+  }
+});
