@@ -35,7 +35,8 @@ Template.ticketShow.events(okCancelEvents(
       Tickets.update(this.ticket._id, {
         $push: {comments: {
           type: "message",
-          message: text
+          message: text,
+          createdAt: new Date().valueOf()
         }}
       });
       evt.target.value = "";
