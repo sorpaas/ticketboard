@@ -27,22 +27,6 @@ var activateInput = function (input) {
   input.select();
 }
 
-Template.ticketShow.events(okCancelEvents(
-  "#comment-new",
-  {
-    ok: function (text, evt) {
-      console.log(this.ticket);
-      Tickets.update(this.ticket._id, {
-        $push: {comments: {
-          type: "message",
-          message: text,
-          createdAt: new Date().valueOf()
-        }}
-      });
-      evt.target.value = "";
-    }
-  }));
-
 Template.ticketShow.events({
   'click #ticket-close': function() {
     Tickets.update(this.ticket._id, {
@@ -52,5 +36,24 @@ Template.ticketShow.events({
   },
   'click #ticket-back': function() {
     Router.go('/');
+  },
+  'click #comment-submit': function(evt, template) {
+    var element = template.find("#comment-new");
+    if(element.value) {
+      Tickets.update(this.ticket._id, {
+        $push: {comments: {
+          type: "message",
+          message: element.value,
+          createdAt: new Date().valueOf()
+        }}
+      });
+      element.value = "";
+    }
   }
 });
+
+Template.ticketShow.helpers({
+  createdAtString: function() {
+    return moment(new Date(this.createdAt)).fromNow();
+  }
+})

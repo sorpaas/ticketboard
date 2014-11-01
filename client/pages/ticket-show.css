@@ -1,0 +1,15 @@
+.ticket-detail .item {
+    margin: 0px 0px 20px 0px;
+    background-color: #F2F2F2;
+}
+
+.ticket-detail .item .intro {
+    font-size: 14px;
+    padding-top: 5px;
+    padding-left: 5px;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.ticket-detail .item .message {
+    padding: 5px;
+}

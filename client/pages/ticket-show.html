@@ -1,26 +1,33 @@
 <template name="ticketShow">
   {{> header}}
 
-  <div class="container">
-    <div class="list-header">
-      <h3>{{ ticket.title }}</h3>
-    </div>
-    <ul class="list-body">
-      {{#each ticket.comments}}
-      <li class="list-item">
-        <div class="item-title">
-          <a class="item-title-link">
+  <div class="row">
+    <div class="ticket-detail">
+      <div class="head">
+        <h1>{{ ticket.title }} <small>{{createdAtString}}</small></h1>
+      </div>
+      <div class="body">
+        {{#each ticket.comments}}
+        <div class="item">
+          <div class="intro">
+            Someone wrote:
+          </div>
+          <div class="message">
             {{message}}
-          </a>
+          </div>
         </div>
-      </li>
-      {{/each}}
-      <li class="list-item">
-        <input id="comment-new" class="item-new" type="text" placeholder="New Comment" />
-      </li>
-    </ul>
-    <button id="ticket-back" class="button button-back">Back</button>
-    <button id="ticket-close" class="button button-close-ticket">Close Ticket</button>
+        {{/each}}
+        <div class="list-item">
+          <!-- <input id="comment-new" class="item-new" type="text" placeholder="New Comment" /> -->
+          <textarea id="comment-new" rows="5" class="item-new" placeholder="New Comment"></textarea>
+          <a id="ticket-back" class="button">Back</a>
+          <ul class="button-group right">
+            <li><a id="ticket-close" class="button">Close Ticket</a></li>
+            <li><a id="comment-submit" class="button">Submit</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 
   {{> footer}}

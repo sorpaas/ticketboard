@@ -1,27 +1,29 @@
 <template name="ticketIndex">
   {{> header }}
 
-  <div class="container">
-    <div class="list-header">
-      <h3>Tickets</h3>
+  <div class="row">
+    <div class="ticket-list">
+      <div class="head">
+        <h3>Tickets</h3>
+      </div>
+      <div class="body">
+        {{#each tickets}}
+        <div class="item">
+          <div class="title">
+            <a class="link" href="/tickets/{{_id}}">
+              {{title}}
+            </a>
+            <div class="meta">
+              Opened {{createdAtString}}
+            </div>
+          </div>
+        </div>
+        {{/each}}
+        <div class="item">
+          <input id="ticket-new" class="create" type="text" placeholder="New Ticket" />
+        </div>
+      </div>
     </div>
-    <ul class="list-body">
-      {{#each tickets}}
-      <li class="list-item">
-        <div class="item-title">
-          <a class="item-title-link" href="/tickets/{{_id}}">
-            {{title}}
-          </a>
-          <div class="item-meta">
-            Opened {{createdAtString}}
-        </div>
-        </div>
-      </li>
-      {{/each}}
-      <li class="list-item">
-        <input id="ticket-new" class="item-new" type="text" placeholder="New Ticket" />
-      </li>
-    </ul>
     <!-- <div id="tickets"> -->
     <!--   {{#each tickets}} -->
     <!--   <div class="ticket {{selected}}"> -->
