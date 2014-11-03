@@ -1,31 +1,5 @@
-var okCancelEvents = function (selector, callbacks) {
-  var ok = callbacks.ok || function () {};
-  var cancel = callbacks.cancel || function () {};
-
-  var events = {};
-  events['keyup ' + selector + ', keydown ' + selector + ', focusout ' + selector] =
-    function (evt) {
-      if (evt.type === "keydown" && evt.which === 27) {
-        cancel.call(this, evt);
-      } else if (evt.type === "keyup" &&
-                 evt.which === 13 ||
-                 evt.type === "focusout") {
-        var value = String(evt.target.value || "");
-        if (value) {
-          ok.call(this, value, evt);
-        } else {
-          cancel.call(this, evt);
-        }
-      }
-    };
-
-  return events;
-}
-
-var activateInput = function (input) {
-  input.focus();
-  input.select();
-}
+Session.setDefault('editing_ticket_title', null);
+Session.setDefault('editing_comment', null);
 
 Template.ticketShow.events({
   'click #ticket-close': function() {
@@ -49,11 +23,52 @@ Template.ticketShow.events({
       });
       element.value = "";
     }
+  },
+  'click #edit-ticket-title': function(evt, template) {
+    Session.set('editing_ticket_title', this.ticket._id);
+  },
+  'click #save-ticket-title': function(evt, template) {
+    var element = template.find("#title-input");
+    if(element.value) {
+      Tickets.update(this.ticket._id, {
+        $set: {title: element.value }
+      });
+    }
+    Session.set('editing_ticket_title', null);
+  },
+  'click #edit-comment': function(evt, template) {
+    Session.set('editing_comment', this.createdAt);
+  },
+  'click #save-comment': function(evt, template) {
+    var element = template.find("#comment-edit-input");
+    if(element.value) {
+      this.message = element.value;
+      this.updatedAt = (new Date()).valueOf();
+
+      Tickets.update(template.data.ticket._id, {
+        $set: {
+          comments: template.data.ticket.comments
+        }
+      });
+    }
+    Session.set('editing_comment', null);
   }
 });
 
 Template.ticketShow.helpers({
   createdAtString: function() {
     return moment(new Date(this.createdAt)).fromNow();
+  },
+  editingTitle: function() {
+    if(this.ticket)
+      return Session.equals('editing_ticket_title', this.ticket._id);
+    else
+      return false;
+  },
+  editingComment: function() {
+    return Session.equals('editing_comment', this.createdAt);
+  },
+  notEditing: function() {
+    return Session.equals('editing_comment', null) && Session.equals('editing_ticket_title', null);
   }
-})
+});

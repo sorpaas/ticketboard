@@ -1,6 +1,9 @@
 .ticket-detail .item {
     margin: 0px 0px 20px 0px;
     background-color: #F2F2F2;
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .ticket-detail .item .intro {
@@ -12,4 +15,53 @@
 
 .ticket-detail .item .message {
     padding: 5px;
+}
+
+.ticket-detail .head .title {
+    line-height: 1.0;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    font-size: 2.25em;
+}
+
+.ticket-detail .head .edit {
+    margin-bottom: 0px;
+}
+
+.ticket-detail .head {
+    margin-top: 20px;
+}
+
+.ticket-detail .head .meta {
+    margin-bottom: 8px;
+}
+
+.ticket-detail .head {
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.ticket-detail .head .title-input {
+    margin-bottom: 0px;
+}
+
+.ticket-detail .title-columns {
+    padding-right: 0px;
+}
+
+.ticket-detail .save-columns {
+    padding-left: 0.5em;
+    margin-top: 9px;
+}
+
+.ticket-detail .body {
+    margin-top: 16px;
+}
+
+.ticket-detail .body .comment-edit {
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+.ticket-detail .body .save-comment {
+    margin-bottom: 5px;
 }
