@@ -17,3 +17,13 @@ Router.route('/tickets/:_id', function() {
 });
 
 Router.route('/about');
+
+Router.route('/login');
+
+Router.onBeforeAction(function() {
+  if (! Meteor.userId()) {
+    this.render('login');
+  } else {
+    this.next();
+  }
+});
