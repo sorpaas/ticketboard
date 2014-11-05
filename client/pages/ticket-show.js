@@ -18,6 +18,7 @@ Template.ticketShow.events({
         $push: {comments: {
           type: "message",
           message: element.value,
+          user_id: Meteor.user()._id,
           createdAt: new Date().valueOf()
         }}
       });
@@ -70,5 +71,17 @@ Template.ticketShow.helpers({
   },
   notEditing: function() {
     return Session.equals('editing_comment', null) && Session.equals('editing_ticket_title', null);
+  },
+  username: function() {
+    if(!this.user_id) {
+      return "Someone";
+    }
+
+    var user = Meteor.users.findOne(this.user_id);
+    if(!user) {
+      return "Someone";
+    }
+
+    return user.username;
   }
 });

@@ -34,6 +34,18 @@ Template.ticketIndex.tickets = function () {
 Template.ticketIndex.helpers({
   createdAtString: function() {
     return moment(new Date(this.createdAt)).fromNow();
+  },
+  username: function() {
+    if(!this.user_id) {
+      return "Someone";
+    }
+
+    var user = Meteor.users.findOne(this.user_id);
+    if(!user) {
+      return "Someone";
+    }
+
+    return user.username;
   }
 })
 
@@ -41,7 +53,7 @@ Template.ticketIndex.events(okCancelEvents(
   "#ticket-new",
   {
     ok: function (text, evt) {
-      var id = Tickets.insert({title: text, createdAt: new Date().valueOf()});
+      var id = Tickets.insert({title: text, createdAt: new Date().valueOf(), user_id: Meteor.user()._id});
       evt.target.value = "";
     }
   }));

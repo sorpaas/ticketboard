@@ -18,7 +18,7 @@
         {{#each ticket.comments}}
         <div class="item">
           <div class="intro">
-            <i>Someone wrote:</i>
+            <i>{{username}} wrote:</i>
           </div>
           {{#if editingComment}}
           <textarea id="comment-edit-input" rows="3" class="comment-edit">{{this.message}}</textarea>
