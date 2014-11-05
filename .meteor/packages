@@ -9,4 +9,6 @@ insecure
 iron:router@1.0.0-pre4
 ewall:foundation
 natestrauser:font-awesome
+accounts-ui
+accounts-password
 
