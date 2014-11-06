@@ -1,36 +1,3 @@
 .footer {
     border-top: 1px solid #E5E5E5;
 }
-
-.login-link-text {
-    color: #FFFFFF;
-    text-decoration: none !important;
-}
-
-.login-close-text {
-    color: #FFFFFF;
-    text-decoration: none !important;
-}
-
-.accounts-dialog {
-    color: #FFFFFF;
-    background: none repeat scroll 0% 0% #333;
-    border: none;
-    text-decoration: none !important;
-}
-
-.accounts-dialog .login-button-form-submit {
-    margin-top: 20px !important;
-}
-
-.accounts-dialog #login-password-label-and-input {
-    margin-top: 10px !important;
-}
-
-.accounts-dialog #signup-link {
-    text-decoration: none !important;
-}
-
-.accounts-dialog #forgot-password-link {
-    display: none;
-}

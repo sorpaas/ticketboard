@@ -5,7 +5,7 @@ Package.describe({
 
 Package.on_use(function (api) {
   api.use(['tracker', 'service-configuration', 'accounts-base',
-           'underscore', 'templating', 'session'], 'client');
+           'underscore', 'templating', 'session', 'iron:router@1.0.0-pre4'], 'client');
   // Export Accounts (etc) to packages using this one.
   api.imply('accounts-base', ['client', 'server']);
 

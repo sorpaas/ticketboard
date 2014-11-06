@@ -5,6 +5,7 @@ var VALID_KEYS = [
   'inSignupFlow',
   'inForgotPasswordFlow',
   'inChangePasswordFlow',
+  'inSettingsFlow',
   'inMessageOnlyFlow',
 
   'errorMessage',
@@ -55,6 +56,7 @@ Accounts._loginButtonsSession = {
     this.set('inSignupFlow', false);
     this.set('inForgotPasswordFlow', false);
     this.set('inChangePasswordFlow', false);
+    this.set('inSettingsFlow', false);
     this.set('inMessageOnlyFlow', false);
     this.set('dropdownVisible', false);
     this.resetMessages();

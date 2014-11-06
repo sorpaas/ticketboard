@@ -18,7 +18,11 @@
           {{#if inChangePasswordFlow}}
             {{> _loginButtonsChangePassword}}
           {{else}}
-            {{> _loginButtonsLoggedInDropdownActions}}
+            {{#if inSettingsFlow}}
+              {{> _loginButtonsSettings}}
+            {{else}}
+              {{> _loginButtonsLoggedInDropdownActions}}
+            {{/if}}
           {{/if}}
         {{/if}}
       </div>
@@ -27,6 +31,10 @@
 </template>
 
 <template name="_loginButtonsLoggedInDropdownActions">
+  <div class="login-button" id="login-buttons-open-settings">
+    Settings
+  </div>
+
   {{#if allowChangingPassword}}
     <div class="login-button" id="login-buttons-open-change-password">
       Change password
@@ -182,7 +190,7 @@ https://gist.github.com/968927
       <label id="login-{{fieldName}}-label" for="login-{{fieldName}}">
         {{fieldLabel}}
       </label>
-      <input id="login-{{fieldName}}" type="{{inputType}}" />
+      <input id="login-{{fieldName}}" type="{{inputType}}" value="{{defaultValue}}"/>
     </div>
   {{/if}}
 </template>
@@ -196,5 +204,17 @@ https://gist.github.com/968927
 
   <div class="login-button login-button-form-submit" id="login-buttons-do-change-password">
     Change password
+  </div>
+</template>
+
+<template name="_loginButtonsSettings">
+  {{#each fields}}
+    {{> _loginButtonsFormField}}
+  {{/each}}
+
+  {{> _loginButtonsMessages}}
+
+  <div class="login-button login-button-form-submit" id="login-buttons-do-apply-settings">
+    Done
   </div>
 </template>

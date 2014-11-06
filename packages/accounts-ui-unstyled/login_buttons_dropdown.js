@@ -23,6 +23,11 @@ Template._loginButtonsLoggedInDropdown.events({
   'click #login-buttons-open-change-password': function() {
     loginButtonsSession.resetMessages();
     loginButtonsSession.set('inChangePasswordFlow', true);
+  },
+
+  'click #login-buttons-open-settings': function() {
+    loginButtonsSession.resetMessages();
+    loginButtonsSession.set('inSettingsFlow', true);
   }
 });
 
@@ -39,6 +44,10 @@ Template._loginButtonsLoggedInDropdown.helpers({
 
   dropdownVisible: function () {
     return loginButtonsSession.get('dropdownVisible');
+  },
+
+  inSettingsFlow: function() {
+    return loginButtonsSession.get('inSettingsFlow');
   }
 });
 
@@ -333,6 +342,32 @@ Template._loginButtonsChangePassword.helpers({
 
 
 //
+// loginButtonsSettings template
+//
+
+Template._loginButtonsSettings.events({
+  'keypress #login-username': function (event) {
+    if (event.keyCode === 13)
+      applySettings();
+  },
+  'click #login-buttons-do-apply-settings': function () {
+    applySettings();
+  }
+});
+
+Template._loginButtonsSettings.helpers({
+  fields: function () {
+    return [
+      {fieldName: 'username', fieldLabel: 'Username', inputType: 'text', defaultValue: Meteor.user().username,
+       visible: function () {
+         return true;
+       }}
+    ];
+  }
+});
+
+
+//
 // helpers
 //
 
@@ -479,6 +514,19 @@ var changePassword = function () {
     }
   });
 };
+
+var applySettings = function() {
+  loginButtonsSession.resetMessages();
+
+  var username = elementValueById('login-username');
+
+  if(username) {
+    Meteor.call('changeUsername', username);
+    loginButtonsSession.set('inSettingsFlow', false);
+    loginButtonsSession.set('inMessageOnlyFlow', true);
+    loginButtonsSession.infoMessage("Settings applied");
+  }
+}
 
 var matchPasswordAgainIfPresent = function () {
   // notably not trimmed. a password could (?) start or end with a space
