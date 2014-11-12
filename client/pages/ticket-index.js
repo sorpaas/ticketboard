@@ -47,7 +47,7 @@ Template.ticketIndex.helpers({
 
     return user.username;
   }
-})
+});
 
 Template.ticketIndex.events(okCancelEvents(
   "#ticket-new",
@@ -55,5 +55,6 @@ Template.ticketIndex.events(okCancelEvents(
     ok: function (text, evt) {
       var id = Tickets.insert({title: text, createdAt: new Date().valueOf(), user_id: Meteor.user()._id});
       evt.target.value = "";
+      Meteor.call("emailTicketChange", text, Meteor.user().username + " has added a ticket \"" + text + "\".");
     }
   }));

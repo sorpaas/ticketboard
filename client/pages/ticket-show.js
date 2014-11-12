@@ -22,6 +22,7 @@ Template.ticketShow.events({
           createdAt: new Date().valueOf()
         }}
       });
+      Meteor.call("emailTicketChange", this.ticket.title, element.value);
       element.value = "";
     }
   },
@@ -30,10 +31,12 @@ Template.ticketShow.events({
   },
   'click #save-ticket-title': function(evt, template) {
     var element = template.find("#title-input");
+    var oldTitle = this.ticket.title;
     if(element.value) {
       Tickets.update(this.ticket._id, {
         $set: {title: element.value }
       });
+      Meteor.call("emailTicketChange", this.ticket.title, Meteor.user().username + " has changed ticket \"" + oldTitle + "\" to \"" + this.ticket.title + "\".");
     }
     Session.set('editing_ticket_title', null);
   },
@@ -51,6 +54,7 @@ Template.ticketShow.events({
           comments: template.data.ticket.comments
         }
       });
+      Meteor.call("emailTicketChange", template.data.ticket.title, this.message);
     }
     Session.set('editing_comment', null);
   }
