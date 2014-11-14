@@ -20,10 +20,25 @@ Router.route('/about');
 
 Router.route('/login');
 
+Router.route('/inbound', function() {
+  post = this.request.body;
+  title = post.subject;
+  first_comment = post.text || post.html;
+
+  Tickets.insert({title: title,
+                  createdAt: new Date().valueOf(),
+                  comments: [ { type: "message",
+                                message: element.value,
+                                createdAt: new Date().valueOf() } ]
+                 });
+
+  return [200, "Success"];
+});
+
 Router.onBeforeAction(function() {
   if (! Meteor.userId()) {
     this.render('login');
   } else {
     this.next();
   }
-});
+}, { except: [ 'inbound' ]});
