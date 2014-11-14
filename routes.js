@@ -25,6 +25,7 @@ Router.route('/inbound', function() {
   title = post.subject;
   first_comment = post.text || post.html;
 
+  Tickets = new Mongo.Collection("tickets");
   Tickets.insert({title: title,
                   createdAt: new Date().valueOf(),
                   comments: [ { type: "message",
