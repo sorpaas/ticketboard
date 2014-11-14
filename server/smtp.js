@@ -6,7 +6,7 @@ Meteor.methods({
   emailTicketChange: function(title, content) {
     Meteor.users.find().forEach(function(user) {
       Email.send({
-        from: "sorpaas@gmail.com",
+        from: "info@ticketboard.ns.mg",
         to: user.emails[0].address,
         subject: "[Ticketboard] " + title,
         text: content
