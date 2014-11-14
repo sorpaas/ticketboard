@@ -22,19 +22,19 @@ Router.route('/login');
 
 Router.route('/inbound', function() {
   post = this.request.body;
+  console.log(JSON.stringify(this.request.body));
   title = post.subject;
   first_comment = post.text || post.html;
 
-  Tickets = new Mongo.Collection("tickets");
   Tickets.insert({title: title,
                   createdAt: new Date().valueOf(),
                   comments: [ { type: "message",
-                                message: element.value,
+                                message: first_comment,
                                 createdAt: new Date().valueOf() } ]
                  });
 
-  return [200, "Success"];
-});
+  this.response.end('Success.');
+}, { where: 'server' });
 
 Router.onBeforeAction(function() {
   if (! Meteor.userId()) {
@@ -42,4 +42,4 @@ Router.onBeforeAction(function() {
   } else {
     this.next();
   }
-}, { except: [ 'inbound' ]});
+}, { except: [ 'inbound' ] });
